@@ -14,6 +14,4 @@ app.listen(port, () => {
   console.log(`server berjalan di port ${port}`);
 });
 
-express.api = (req,res)=>{
-  app(req,res)
-}
+exports.app = functions.https.onRequest(app);
