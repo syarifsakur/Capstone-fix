@@ -6,6 +6,11 @@ const admin = require("firebase-admin");
 const akunRouter = require('./route/router')
 // const port = 4000;
 
+app.get('/', (req, res) => {
+  res.json('message: hello world');
+  res.status(200);
+});
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
