@@ -7,6 +7,12 @@ const port = 4000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.post("/api/my-endpoint", (req, res) => {
+  // Panggil fungsi entry point Cloud Functions di sini
+  myCloudFunction(req, res);
+});
+
 app.use(akunRouter)
 
 app.listen(port, () => {
