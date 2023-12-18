@@ -9,6 +9,3 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(akunRouter)
 
-app.listen(port, () => {
-  console.log(`server berjalan di port ${port}`);
-});
