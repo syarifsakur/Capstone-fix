@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const akunController = require('../controller/function')
 
-router.get('/', akunController.daftar_akun)
+router.get('/daftarakun', akunController.daftar_akun)
 router.get('/daftarchat',akunController.daftar_chat)
 router.post('/register',akunController.register)
 router.post('/login',akunController.login)
