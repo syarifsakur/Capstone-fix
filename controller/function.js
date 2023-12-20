@@ -91,7 +91,7 @@ daftar_akun:(req, res) => {
       
       })
       .catch(error => {
-        res.status(500).json({ message: 'Terjadi kesalahan', error: error.message });
+        res.status(500).json({error:false,message: 'Terjadi kesalahan', error: error.message });
       });
   },
 
