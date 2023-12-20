@@ -82,10 +82,7 @@ daftar_akun:(req, res) => {
             // Periksa apakah password cocok
             if (user.password === password) {
             // Jika password cocok, kirimkan respons berhasil login
-            res.json({
-               error:false,
-               message: 'Login berhasil',
-              dataUser:user });
+            res.json({message: 'csccscscLogin berhasil' });
             } else {
             // Jika password salah, kirimkan respons gagal login
             res.status(401).json({message: 'password salah' });
