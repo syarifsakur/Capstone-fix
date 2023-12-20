@@ -86,7 +86,9 @@ daftar_akun:(req, res) => {
             res.json({ message: 'Login berhasil' });
             } else {
             // Jika password salah, kirimkan respons gagal login
-            res.status(401).json({error:error.status, message: 'password salah' });
+            res.status(401).json({
+              error:false, 
+              message: 'password salah' });
             }
         }
       
