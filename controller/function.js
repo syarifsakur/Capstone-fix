@@ -1,6 +1,5 @@
 const admin = require('firebase-admin')
 const serviceAccount = require("../google-services.json");
-const { error } = require('firebase-functions/logger');
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
   // Add other Firebase configurations here
@@ -83,12 +82,13 @@ daftar_akun:(req, res) => {
             // Periksa apakah password cocok
             if (user.password === password) {
             // Jika password cocok, kirimkan respons berhasil login
-            res.json({ message: 'Login berhasil' });
+            res.json({
+               error:false,
+               message: 'Login berhasil',
+              dataUser:user });
             } else {
             // Jika password salah, kirimkan respons gagal login
-            res.status(401).json({
-              error:false, 
-              message: 'password salah' });
+            res.status(401).json({message: 'password salah' });
             }
         }
       
