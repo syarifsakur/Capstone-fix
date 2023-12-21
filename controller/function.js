@@ -29,7 +29,7 @@ daftar_akun:(req, res) => {
 
   //membuat akun baru
   register: (req, res) => {
-    const { username, email, password } = req.body;
+    const { name, email, password } = req.body;
   
     // Cek apakah pengguna sudah terdaftar
     db.collection('akun')
@@ -39,7 +39,7 @@ daftar_akun:(req, res) => {
         if (snapshot.empty) {
           // Jika pengguna belum terdaftar, buat data pengguna baru
           const user = {
-            username,
+            name,
             email,
             password,
           };
@@ -48,7 +48,7 @@ daftar_akun:(req, res) => {
           db.collection('akun')
             .add(user)
             .then(docRef => {
-              res.json({ message: 'Registrasi berhasil', userId: docRef.id });
+              res.json({ error:false,message: "User Created" });
             })
             .catch(error => {
               res.status(500).json({ message: 'Terjadi kesalahan', error: error.message });
@@ -87,10 +87,10 @@ daftar_akun:(req, res) => {
             const yo =db.collection('akun').doc()
             const loginResult = {
               userId:yo.id,
-              email:user.email,
+              name:user.name,
               token:token
             }
-            res.json({error:false,message: 'SUCCES',loginResult});
+            res.json({error:false,message: 'success',loginResult});
             } else {
             // Jika password salah, kirimkan respons gagal login
             res.status(401).json({message: 'password salah' });
