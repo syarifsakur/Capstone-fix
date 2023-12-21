@@ -86,11 +86,14 @@ daftar_akun:(req, res) => {
             // Jika password cocok, kirimkan respons berhasil login
             const token = jwt.sign({ email: user.email }, 'secret-key', { expiresIn: '3h' });
             const loginResult = {
-              userId:user.userId,
               email:user.email,
               token:token
             }
-            res.json({error:false,message: 'SUCCES',loginResult});
+            db.collection('akun')
+            then(docRef=>{
+              res.json({error:false,message: 'SUCCES',loginResult});
+            })
+            
             } else {
             // Jika password salah, kirimkan respons gagal login
             res.status(401).json({message: 'password salah' });
