@@ -1,5 +1,7 @@
 const admin = require('firebase-admin')
 const serviceAccount = require("../google-services.json");
+const jwt = require('jsonwebtoken');
+const { error } = require('firebase-functions/logger');
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
   // Add other Firebase configurations here
@@ -82,7 +84,13 @@ daftar_akun:(req, res) => {
             // Periksa apakah password cocok
             if (user.password === password) {
             // Jika password cocok, kirimkan respons berhasil login
-            res.json({message: 'csccscscLogin berhasil' });
+            const token = jwt.sign({ email: user.email }, 'secret-key', { expiresIn: '3h' });
+            const result = {
+              username : user.username,
+              email:user.email,
+              token:token
+            }
+            res.json({error:false,message: 'SUCCES',result });
             } else {
             // Jika password salah, kirimkan respons gagal login
             res.status(401).json({message: 'password salah' });
