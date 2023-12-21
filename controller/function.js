@@ -85,12 +85,12 @@ daftar_akun:(req, res) => {
             if (user.password === password) {
             // Jika password cocok, kirimkan respons berhasil login
             const token = jwt.sign({ email: user.email }, 'secret-key', { expiresIn: '3h' });
-            const result = {
-              username : user.username,
+            const loginResult = {
+              userId:user.userId,
               email:user.email,
               token:token
             }
-            res.json({error:false,message: 'SUCCES',result });
+            res.json({error:false,message: 'SUCCES',loginResult});
             } else {
             // Jika password salah, kirimkan respons gagal login
             res.status(401).json({message: 'password salah' });
