@@ -80,20 +80,17 @@ daftar_akun:(req, res) => {
         } else {
           // Jika pengguna ditemukan, kirimkan respons berhasil login
           const user = snapshot.docs[0].data();
-
             // Periksa apakah password cocok
             if (user.password === password) {
             // Jika password cocok, kirimkan respons berhasil login
             const token = jwt.sign({ email: user.email }, 'secret-key', { expiresIn: '3h' });
+            const yo =db.collection('akun').doc()
             const loginResult = {
+              userId:yo.id,
               email:user.email,
               token:token
             }
-            db.collection('akun')
-            then(docRef=>{
-              res.json({error:false,message: 'SUCCES',loginResult});
-            })
-            
+            res.json({error:false,message: 'SUCCES',loginResult});
             } else {
             // Jika password salah, kirimkan respons gagal login
             res.status(401).json({message: 'password salah' });
